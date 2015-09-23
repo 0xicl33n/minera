@@ -14,9 +14,11 @@
 #
 
 echo -e "-----\nInstall DEB packages\n-----\n"
-sudo apt-get install -y lighttpd php5-cgi redis-server git screen php5-cli php5-curl
+sudo apt-get update
+sudo apt-get install -y lighttpd php5-cgi redis-server git screen php5-cli php5-curl lm-sensors
 
 echo -e "-----\nConfiguring Lighttpd\n-----\n"
+sensors-detect --auto
 sudo lighty-enable-mod fastcgi
 sudo lighty-enable-mod fastcgi-php
 sudo service lighttpd force-reload

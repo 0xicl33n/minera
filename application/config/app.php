@@ -15,7 +15,17 @@ $config['minerd_log_url'] = 'application/logs/cpuminer.log';
 $config['tmp_stats_file'] = '/tmp/cm_latest_stats';
 $config['system_user'] = 'minera';
 $config['remote_config_url'] = 'https://raw.githubusercontent.com/michelem09/minera/master/minera.json';
+//
 $config['rpi_temp_file'] = '/sys/class/thermal/thermal_zone0/temp';
+//To use temp with a regular dekstop, delete the slashes in the beginning to comment this in:
+//$config['rpi_temp_file'] = '/tmp/'
+/*
+Now you have to navigate to application/models/util_model.php and change $temp to:
+
+$temp = number_format( ( (int)exec(sensors | awk '/^Core /{++r; gsub(/[^[:digit:]]+/, "", $3); s+=$3} END{print s/(r)}')));
+
+Dont worry, it will be on that page.
+*/
 $config['btc_address'] = '1AmREReHNLec9EaW7gLRdW31LNSDA9SGR1';
 $config['ltc_address'] = 'LLPmAT9gDwmiSdqwWEZu6mpUDmrNAnYBdC';
 $config['doge_address'] = 'DLAHwNxfUTUcePewbkvwvAouny19mcosA7';
@@ -30,5 +40,6 @@ $config['minera_pool_username'] = 'michelem.minera';
 $config['minera_pool_password'] = 'x';
 $config['minera_anonymous_url'] = 'http://getminera.com/api/sendMinerStats';
 $config['minera_share_configs_url'] = 'http://getminera.com/api/sendMinerConfig';
+
 /* End of file autoload.php */
 /* Location: ./application/config/app.php */

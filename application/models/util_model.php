@@ -1368,6 +1368,9 @@ class Util_model extends CI_Model {
 		{
 			$scale = ($this->redis->get("dashboard_temp")) ? $this->redis->get("dashboard_temp") : "c";
 			$temp = number_format( ( (int)exec("cat ".$this->config->item("rpi_temp_file"))/1000), 2 );
+			//comment this in to use it instead of the rpi temp file. comment out the one above 
+			//$temp = number_format( ( (int)exec(sensors | awk '/^Core /{++r; gsub(/[^[:digit:]]+/, "", $3); s+=$3} END{print s/(r)}')));
+
 
 			if ($scale == "f")
 				$temp = intval((9/5)* $temp + 32);
