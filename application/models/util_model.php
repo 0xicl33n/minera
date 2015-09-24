@@ -1361,6 +1361,8 @@ class Util_model extends CI_Model {
 		return true;
 	}
 	
+	/* CUSTOM TEMP STUFF GOES HERE*/
+	
 	// Check RPi temp
 	public function checkTemp()
 	{
@@ -1369,11 +1371,15 @@ class Util_model extends CI_Model {
 			$scale = ($this->redis->get("dashboard_temp")) ? $this->redis->get("dashboard_temp") : "c";
 			$temp = number_format( ( (int)exec("cat ".$this->config->item("rpi_temp_file"))/1000), 2 );
 			//comment this in to use it instead of the rpi temp file. comment out the one above 
-			//$temp = number_format( ( (int)exec(sensors | awk '/^Core /{++r; gsub(/[^[:digit:]]+/, "", $3); s+=$3} END{print s/(r)}')));
+			//$temp = number_format( ( (int)exec("sensors | awk '/^Core /{++r; gsub(/[^[:digit:]]+/, "", $3); s+=$3} END{print s/(r)}'")));
 
 
 			if ($scale == "f")
 				$temp = intval((9/5)* $temp + 32);
+			
+			//if using custom temp this has to be removed too:
+			//if ($scale == "f")
+			//	$temp = intval((9/5)* $temp + 32);
 
 			return array("value" => $temp, "scale" => $scale);
 		}
