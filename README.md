@@ -8,3 +8,4 @@ The normal application assumes the board running minera is a raspberry pi, with 
 TODO:
 
 - Beaglebone black 
+- Initial testing
